@@ -4,7 +4,7 @@ from config.settings import WEATHER_FORECAST_API_KEY, WEATHER_FORECAST_API_TIMEO
 
 
 
-def get_temperature(city, days):
+def get_daily_forecasts(city, days):
     payload = {'key': WEATHER_FORECAST_API_KEY, 'q': city, 'days': days}
     r = requests.get(WEATHER_FORECAST_API_URL, params=payload, timeout=WEATHER_FORECAST_API_TIMEOUT)
     r.raise_for_status()
