@@ -1,0 +1,8 @@
+[flake8]
+max-line-length = 88
+extend-exclude =
+    .pytest_cache,
+    venv,
+    **/migrations,
+application-import-names = tests,vsuite,scripts
+import-order-style = google
