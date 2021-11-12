@@ -1,7 +1,5 @@
 from unittest import mock
-from unittest.mock import MagicMock
 
-from config.settings import WEATHER_FORECAST_API_URL
 from forecast import weather
 from forecast.exceptions import CityNotFound
 from forecast.utils import calculate_stats
@@ -12,14 +10,16 @@ class TestForecastView:
         response = client.get("/api/locations/capetown/")
 
         assert response.status_code == 400
-        assert response.json() == {'error': '`days` is a required query string parameter'}
+        assert response.json() == {
+            "error": "`days` is a required query string parameter"
+        }
 
     @mock.patch.object(weather, "get_daily_forecasts", side_effect=CityNotFound)
     def test_city_not_found_returns_400(self, mock_daily_forecasts, client):
         response = client.get("/api/locations/capetown/?days=3")
 
         assert response.status_code == 400
-        assert response.json() == {'error': '`city` not found'}
+        assert response.json() == {"error": "`city` not found"}
 
     @mock.patch.object(weather, "get_daily_forecasts")
     def test_city_found_returns_forecast_stats(self, mock_daily_forecasts, client):

@@ -4,5 +4,5 @@ extend-exclude =
     .pytest_cache,
     venv,
     **/migrations,
-application-import-names = tests,vsuite,scripts
+application-import-names = tests,forecast, config
 import-order-style = google
